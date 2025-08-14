@@ -101,6 +101,15 @@ namespace Game.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""783d8e5b-4c06-4764-9336-10424d10fe8f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -136,6 +145,28 @@ namespace Game.Input
                     ""action"": ""Swipe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""388aad96-d529-4dca-a4e3-f1be103e090c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e68f0ea-0f21-4f2e-afc5-82476d8da607"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -145,6 +176,7 @@ namespace Game.Input
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Swipe = m_Player.FindAction("Swipe", throwIfNotFound: true);
+            m_Player_Press = m_Player.FindAction("Press", throwIfNotFound: true);
         }
 
         ~@GameControls()
@@ -226,6 +258,7 @@ namespace Game.Input
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Swipe;
+        private readonly InputAction m_Player_Press;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -241,6 +274,10 @@ namespace Game.Input
             /// Provides access to the underlying input action "Player/Swipe".
             /// </summary>
             public InputAction @Swipe => m_Wrapper.m_Player_Swipe;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Press".
+            /// </summary>
+            public InputAction @Press => m_Wrapper.m_Player_Press;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -270,6 +307,9 @@ namespace Game.Input
                 @Swipe.started += instance.OnSwipe;
                 @Swipe.performed += instance.OnSwipe;
                 @Swipe.canceled += instance.OnSwipe;
+                @Press.started += instance.OnPress;
+                @Press.performed += instance.OnPress;
+                @Press.canceled += instance.OnPress;
             }
 
             /// <summary>
@@ -284,6 +324,9 @@ namespace Game.Input
                 @Swipe.started -= instance.OnSwipe;
                 @Swipe.performed -= instance.OnSwipe;
                 @Swipe.canceled -= instance.OnSwipe;
+                @Press.started -= instance.OnPress;
+                @Press.performed -= instance.OnPress;
+                @Press.canceled -= instance.OnPress;
             }
 
             /// <summary>
@@ -331,6 +374,13 @@ namespace Game.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSwipe(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Press" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPress(InputAction.CallbackContext context);
         }
     }
 }

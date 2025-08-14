@@ -1,0 +1,32 @@
+using UnityEngine;
+
+namespace Game.Gameplay
+{
+    public class Player : MonoBehaviour
+    {
+        private GameInput gameInput;
+        private Runner runner;
+
+        private void Awake()
+        {
+            gameInput = GetComponent<GameInput>();
+            runner = GetComponent<Runner>();
+        }
+
+        private void OnEnable()
+        {
+            if (gameInput != null)
+            {
+                gameInput.OnSwipeHorizontally.AddListener(runner.Swipe);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (gameInput != null)
+            {
+                gameInput.OnSwipeHorizontally.RemoveListener(runner.Swipe);
+            }
+        }
+    }
+}
