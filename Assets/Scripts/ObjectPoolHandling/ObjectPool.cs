@@ -8,23 +8,28 @@ namespace Game.ObjectPoolHandling
     {
         private Queue<T> queue;
         private int maxCount;
+        private bool hasInfiniteStorage = false;
 
         private Func<T> OnCreate;
         private Action<T> OnGet;
         private Action<T> OnReturnToPool;
         private Action<T> OnDestroy;
 
-        public ObjectPool(Func<T> OnCreate, Action<T> OnGet, Action<T> OnReturnToPool, Action<T> OnDestroy, int maxCount)
+        public ObjectPool(Func<T> OnCreate, Action<T> OnGet, Action<T> OnReturnToPool, Action<T> OnDestroy, int initialCapacity, bool hasInfiniteStorage = false)
         {
             queue = new Queue<T>();
-            this.maxCount = maxCount;
+            this.hasInfiniteStorage = hasInfiniteStorage;
+            if(!hasInfiniteStorage)
+            {
+                this.maxCount = initialCapacity;
+            }
 
             this.OnCreate = OnCreate;
             this.OnGet = OnGet;
             this.OnReturnToPool = OnReturnToPool;
             this.OnDestroy = OnDestroy;
 
-            for(int i = 1; i <= maxCount; i++)
+            for(int i = 1; i <= initialCapacity; i++)
             {
                 T value = OnCreate.Invoke();
                 queue.Enqueue(value);
@@ -46,11 +51,12 @@ namespace Game.ObjectPoolHandling
 
         public void ReturnToPool(T value)
         {
-            if(queue.Count == maxCount)
+            if(!hasInfiniteStorage && queue.Count == maxCount)
             {
                 Debug.LogError("Pool is full, can't take anymore.");
                 return;
             }
+
             OnReturnToPool?.Invoke(value);
             queue.Enqueue(value);
         }
