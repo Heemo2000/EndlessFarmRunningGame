@@ -119,63 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &49658697
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 49658700}
-  - component: {fileID: 49658699}
-  - component: {fileID: 49658698}
-  m_Layer: 0
-  m_Name: Service Locator(Scene)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &49658698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49658697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea71a7bab3eae6a47ae39fabff135911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &49658699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49658697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd336510eb004846a971c6b9d04dccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &49658700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49658697}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &98540379
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,53 +800,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1366187328
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1366187330}
-  - component: {fileID: 1366187329}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1366187329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366187328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a13376ab71737254890a6f358abf3148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnGameOver:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &1366187330
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366187328}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1771577606
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,9 +839,9 @@ MonoBehaviour:
   - {fileID: -8768382351772741182, guid: b7378c04adeae804aa3425e98af42206, type: 3}
   initialChunkCount: 100
   distanceBetweenChunks: 0
-  startingTilesCount: 15
-  tilesCountAfterResettingOrigin: 10
-  pathDistance: 200
+  startingTilesCount: 7
+  tilesCountAfterResettingOrigin: 5
+  pathDistance: 100
 --- !u!4 &1771577608
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,10 +905,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322e8c2c36935484b92dd4a51197d178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 10
+  forwardSpeed: 0.5
   swipeSpeed: 10
   forwardPickupSpeed: 20
-  laneWidth: 3
+  laneWidth: 2.5
   jumpHeight: 5
   gravity: 5
   fallMultiplier: 1
@@ -1101,7 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f9aa886daa0bc43be7eeab78391e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeDistance: {x: 50, y: 50}
+  swipeDistance: {x: 10, y: 50}
   OnSwipeHorizontally:
     m_PersistentCalls:
       m_Calls: []
