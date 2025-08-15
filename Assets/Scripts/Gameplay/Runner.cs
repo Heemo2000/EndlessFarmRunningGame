@@ -20,12 +20,14 @@ namespace Game.Gameplay
         [SerializeField] private float jumpHeight = 5.0f;
         [Min(0.1f)]
         [SerializeField] private float gravity = 5.0f;
+        [Min(1.0f)]
+        [SerializeField] private float fallMultiplier = 1.0f;
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private Transform groundCheck;
         [Min(0.03f)]
         [SerializeField] private float groundCheckRadius = 0.2f;
-        [Min(0.1f)]
-        [SerializeField] private float belowCheckDistance = 4.0f;
+        [Min(0.01f)]
+        [SerializeField] private float jumpBuildupSpeed = 5.0f;
 
         private Rigidbody runnerRB;
         private int currentLaneIndex = -1;
@@ -41,16 +43,26 @@ namespace Game.Gameplay
         private float currentVelocityY = 0.0f;
         private float newVelocityY = 0.0f;
         private float averageVelocityY = 0.0f;
+        private bool shouldBuildupJump = false;
+        private float currentJumpHeight = 0.0f;
 
         public bool ShouldMove { get => shouldMove; set => shouldMove = value; }
 
 
         public void MoveBack(float distance)
         {
-            if(shouldMove)
-            {
-                currentPosition.z -= distance;
-            }
+            currentPosition.z -= distance;
+        }
+
+        public void StartJumpBuildup()
+        {
+            shouldBuildupJump = true;
+        }
+
+        public void LeaveJumpBuildup()
+        {
+            shouldBuildupJump = false;
+            
         }
 
         public void Swipe(int directionX)
@@ -61,6 +73,11 @@ namespace Game.Gameplay
             //}
             //Debug.Log("DirectionX: " + directionX);
 
+            if(!shouldMove)
+            {
+                return;
+            }
+
             int newLaneIndex = currentLaneIndex + directionX;
 
             if (newLaneIndex >= -1 && newLaneIndex <= 1)
@@ -69,6 +86,83 @@ namespace Game.Gameplay
                 Debug.Log("Current Lane Index: " +  currentLaneIndex);
                 targetX = startX + (currentLaneIndex * laneWidth);
             }
+        }
+
+        
+        private void HandleGravity()
+        {
+            if (!shouldMove)
+            {
+                return;
+            }
+
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayerMask.value);
+
+
+            //We will compute gravity using verlet integration.
+            if (isGrounded)
+            {
+                if(!shouldBuildupJump && currentJumpHeight > 0.0f)
+                {
+                    velocityY = currentJumpHeight;
+                    currentJumpHeight = 0.0f;
+                }
+                else
+                {
+                    velocityY = 0.0f;
+                }
+            }
+            else
+            {
+                bool isFalling = velocityY < 0.0f;
+
+                currentVelocityY = (isFalling) ? velocityY * fallMultiplier :
+                                                 velocityY;
+
+                newVelocityY = currentVelocityY - gravity * Time.deltaTime;
+                averageVelocityY = (currentVelocityY + newVelocityY) / 2.0f;
+                velocityY = averageVelocityY;
+            }
+        }
+
+        private void HandleMovement()
+        {
+
+            //If movement allowed only then move
+            if (shouldMove)
+            {
+                //The below condition is done to allow seamless pausing and un-pausing.
+                if (currentForwardSpeed == 0.0f)
+                {
+                    currentForwardSpeed = lastKnownForwardSpeed;
+                }
+                currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed,
+                                                        forwardSpeed,
+                                                        forwardPickupSpeed * Time.fixedDeltaTime);
+                
+                if(shouldBuildupJump)
+                {
+                    currentJumpHeight = Mathf.MoveTowards(currentJumpHeight, jumpHeight, jumpBuildupSpeed * Time.fixedDeltaTime);
+                }
+                else
+                {
+                    currentJumpHeight = 0.0f;
+                }
+            }
+            else
+            {
+                lastKnownForwardSpeed = currentForwardSpeed;
+                currentForwardSpeed = 0.0f;
+                currentJumpHeight = 0.0f;
+            }
+
+            //Allow movement in Z-axis.
+            currentPosition.z += currentForwardSpeed * Time.fixedDeltaTime;
+
+            //And X-axis too.
+            currentPosition.x = Mathf.Lerp(currentPosition.x, targetX, swipeSpeed * Time.fixedDeltaTime);
+            currentPosition.y = transform.position.y + velocityY * Time.fixedDeltaTime;
+            runnerRB.MovePosition(currentPosition);
         }
 
         private void Awake()
@@ -85,51 +179,12 @@ namespace Game.Gameplay
 
         private void Update()
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayerMask.value);
-
-            //We will compute gravity using verlet integration.
-            if (isGrounded)
-            {
-                velocityY = 0.0f;
-            }
-            else
-            {
-                currentVelocityY = velocityY;
-                newVelocityY = currentVelocityY - gravity * Time.deltaTime;
-                averageVelocityY = (currentVelocityY + newVelocityY) / 2.0f;
-                velocityY = averageVelocityY;
-            }
+            HandleGravity();
         }
 
         void FixedUpdate()
         {
-            
-
-            //If movement allowed only then move
-            if (shouldMove) 
-            {
-                //The below condition is done to allow seamless pausing and un-pausing.
-                if (currentForwardSpeed == 0.0f) 
-                {
-                    currentForwardSpeed = lastKnownForwardSpeed;
-                }
-                currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, 
-                                                        forwardSpeed, 
-                                                        forwardPickupSpeed * Time.fixedDeltaTime);
-            }
-            else
-            {
-                lastKnownForwardSpeed = currentForwardSpeed;
-                currentForwardSpeed = 0.0f;
-            }
-
-            //Allow movement in Z-axis.
-            currentPosition.z += currentForwardSpeed * Time.fixedDeltaTime;
-
-            //And X-axis too.
-            currentPosition.x = Mathf.Lerp(currentPosition.x, targetX, swipeSpeed * Time.fixedDeltaTime);
-            currentPosition.y = transform.position.y + velocityY * Time.fixedDeltaTime;
-            runnerRB.MovePosition(currentPosition);
+            HandleMovement();
         }
 
         private void OnDrawGizmosSelected()
@@ -152,10 +207,6 @@ namespace Game.Gameplay
             }
 
             Gizmos.DrawLine(drawPosition - Vector3.right * laneWidth, drawPosition + Vector3.right * laneWidth);
-
-            //For showing below check distance for ground checking
-            Gizmos.color = Color.black;
-            Gizmos.DrawLine(drawPosition, drawPosition - Vector3.up * belowCheckDistance);
         }
     }
 }

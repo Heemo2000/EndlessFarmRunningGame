@@ -18,6 +18,8 @@ namespace Game.Gameplay
             if (gameInput != null)
             {
                 gameInput.OnSwipeHorizontally.AddListener(runner.Swipe);
+                gameInput.OnPressStarted.AddListener(runner.StartJumpBuildup);
+                gameInput.OnPressEnded.AddListener(runner.LeaveJumpBuildup);
             }
         }
 
@@ -26,6 +28,8 @@ namespace Game.Gameplay
             if (gameInput != null)
             {
                 gameInput.OnSwipeHorizontally.RemoveListener(runner.Swipe);
+                gameInput.OnPressStarted.RemoveListener(runner.StartJumpBuildup);
+                gameInput.OnPressEnded.RemoveListener(runner.LeaveJumpBuildup);
             }
         }
     }
