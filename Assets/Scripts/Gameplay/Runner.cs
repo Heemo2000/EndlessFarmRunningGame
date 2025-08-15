@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Gameplay
 {
@@ -48,6 +48,7 @@ namespace Game.Gameplay
 
         public bool ShouldMove { get => shouldMove; set => shouldMove = value; }
 
+        public UnityEvent<float> OnJumpBuildup;
 
         public void MoveBack(float distance)
         {
@@ -62,7 +63,6 @@ namespace Game.Gameplay
         public void LeaveJumpBuildup()
         {
             shouldBuildupJump = false;
-            
         }
 
         public void Swipe(int directionX)
@@ -148,6 +148,8 @@ namespace Game.Gameplay
                 {
                     currentJumpHeight = 0.0f;
                 }
+
+                OnJumpBuildup?.Invoke(currentJumpHeight);
             }
             else
             {
