@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 20
+  laneWidth: 2.5
 --- !u!1 &7088101148880013415
 GameObject:
   m_ObjectHideFlags: 0

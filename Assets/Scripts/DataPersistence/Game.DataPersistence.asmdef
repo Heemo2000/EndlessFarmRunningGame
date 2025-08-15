@@ -1,0 +1,16 @@
+{
+    "name": "Game.DataPersistence",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a1cf8fe4eafde964c966731389c6ff0e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

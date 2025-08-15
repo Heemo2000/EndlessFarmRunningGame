@@ -1,17 +1,19 @@
 using UnityEngine;
-using UnityEngine.Events;
-using Game.Core;
+
 namespace Game.Gameplay
 {
-    public class GameManager : MonoBehaviour
+    public class Inventory : MonoBehaviour
     {
-
-        public UnityEvent OnGameOver;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            ServiceLocator.ForSceneOf(this).Register<GameManager>(this);
-        }
         
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        
+        }
     }
 }
