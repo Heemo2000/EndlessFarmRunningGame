@@ -41,7 +41,7 @@ namespace Game.DataPersistence
             else
             {
                 stream.Close();
-                File.WriteAllText(path, JSON.Serialize(data).CreatePrettyString());
+                File.WriteAllText(path, JSON.Serialize(data, new SerializeSettings() { AllowNonStringDictionaryKeys = true, SerializeEnumsDirectlyToInts = true}).CreatePrettyString());
             }
                 return true;
             }
@@ -68,7 +68,7 @@ namespace Game.DataPersistence
                 else
                 {
                     JSON json = JSON.ParseString(File.ReadAllText(path));
-                    data = json.Deserialize<T>();
+                    data = json.Deserialize<T>(new DeserializeSettings() { AllowDeserializeIntsToEnums = true, AllowNonStringDictionaryKeys = true });
                 }
 
                 return data;

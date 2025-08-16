@@ -91,10 +91,6 @@ namespace Game.Gameplay
         
         private void HandleGravity()
         {
-            if (!shouldMove)
-            {
-                return;
-            }
 
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayerMask.value);
 

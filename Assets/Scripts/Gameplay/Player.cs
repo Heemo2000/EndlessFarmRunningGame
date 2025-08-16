@@ -23,6 +23,15 @@ namespace Game.Gameplay
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            IInteractable interactable = other.GetComponent<IInteractable>();
+            if(interactable != null)
+            {
+                interactable.Interact();
+            }
+        }
+
         private void OnDisable()
         {
             if (gameInput != null)

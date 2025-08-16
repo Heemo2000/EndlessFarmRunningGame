@@ -15,7 +15,7 @@ namespace Game.UI
             {
                 transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, time);
                 yield return null;
-                time += Time.deltaTime * speed;
+                time += Time.unscaledDeltaTime * speed;
             }
 
             transform.localScale = Vector3.one;
@@ -31,7 +31,7 @@ namespace Game.UI
             {
                 transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, time);
                 yield return null;
-                time += Time.deltaTime * speed;
+                time += Time.unscaledDeltaTime * speed;
             }
 
             transform.localScale = Vector3.zero;
@@ -50,7 +50,7 @@ namespace Game.UI
             {
                 canvasGroup.alpha = Mathf.Lerp(0, 1, time);
                 yield return null;
-                time += Time.deltaTime * speed;
+                time += Time.unscaledDeltaTime * speed;
             }
 
             canvasGroup.alpha = 1;
@@ -68,7 +68,7 @@ namespace Game.UI
             {
                 canvasGroup.alpha = Mathf.Lerp(1, 0, time);
                 yield return null;
-                time += Time.deltaTime * speed;
+                time += Time.unscaledDeltaTime * speed;
             }
 
             canvasGroup.alpha = 0;
@@ -103,7 +103,7 @@ namespace Game.UI
             {
                 transform.anchoredPosition = Vector2.Lerp(startPosition, Vector2.zero, time);
                 yield return null;
-                time += Time.deltaTime * speed;
+                time += Time.unscaledDeltaTime * speed;
             }
 
             transform.anchoredPosition = Vector2.zero;
@@ -138,7 +138,7 @@ namespace Game.UI
             {
                 transform.anchoredPosition = Vector2.Lerp(Vector2.zero, endPosition, time);
                 yield return null;
-                time += Time.deltaTime * speed;
+                time += Time.unscaledDeltaTime * speed;
             }
 
             transform.anchoredPosition = endPosition;

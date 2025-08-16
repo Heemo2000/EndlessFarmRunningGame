@@ -75,26 +75,22 @@ namespace Game.UI
 
         public void PopPage()
         {
-            if (pageStack.Count > 1)
+            if (pageStack.Count > 0)
             {
                 Page page = pageStack.Pop();
                 page.Exit();
 
-                Page newCurrentPage = pageStack.Peek();
-                if (newCurrentPage.exitOnNewPagePush)
+                Page newCurrentPage = (pageStack.Count > 0) ? pageStack.Peek() : null;
+                if (newCurrentPage != null && newCurrentPage.exitOnNewPagePush)
                 {
                     newCurrentPage.Enter();
                 }
-            }
-            else
-            {
-                Debug.LogWarning("Trying to pop a page but only 1 page remains in the stack!");
             }
         }
 
         public void PopAllPages()
         {
-            for (int i = 1; i < pageStack.Count; i++)
+            for (int i = 0; i < pageStack.Count; i++)
             {
                 PopPage();
             }

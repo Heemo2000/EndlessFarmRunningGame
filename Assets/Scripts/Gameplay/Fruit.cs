@@ -13,11 +13,14 @@ namespace Game.Gameplay
 
         public void Interact()
         {
-            if(ServiceLocator.ForSceneOf(this).
-               TryGetService<FruitManager>(out FruitManager fruitManager))
+            //Increase the fruit count
+            if(ServiceLocator.ForSceneOf(this).TryGetService<GameDataManager>(out GameDataManager gameDataManager))
             {
-                fruitManager.Unspawn(this);
+                int count = gameDataManager.GetFruitCount(type);
+                gameDataManager.SetFruitCount(type, count + 1);
             }
+            //Disable the gameobject.
+            gameObject.SetActive(false);
         }
 
         private void FixedUpdate()
