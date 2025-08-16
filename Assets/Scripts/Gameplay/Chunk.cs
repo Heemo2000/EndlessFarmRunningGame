@@ -4,11 +4,13 @@ namespace Game.Gameplay
 {
     public class Chunk : MonoBehaviour
     {
+        [SerializeField] private ChunkType type;
         [Min(1.0f)]
         [SerializeField] private float length = 10.0f;
         [Min(1.0f)]
         [SerializeField] private float laneWidth = 5.0f;
         public float Length { get => length; }
+        public ChunkType Type { get => type; set => type = value; }
 
         public void MoveBack(float distance)
         {

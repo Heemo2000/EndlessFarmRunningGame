@@ -1,54 +1,64 @@
-using Game.Core;
 using System.Collections.Generic;
 using UnityEngine;
 using Game.ObjectPoolHandling;
+using Game.Core;
+using System.Diagnostics;
+using System.Linq;
+
+using Debug = UnityEngine.Debug;
 
 namespace Game.Gameplay
 {
     public class PathSpawner : MonoBehaviour
     {
         [SerializeField] private Runner runner; // Player reference
-        [SerializeField] private Chunk[] startingChunks;
-        [SerializeField] private Chunk[] pathPrefabs; // Different types of paths (some with gaps)
-        [Min(100)]
-        [SerializeField] private int initialChunkCount = 100;
+        [SerializeField] private ChunkData[] chunkData;
+        [SerializeField] private DifficultyData[] difficulties;
+        [Min(1)]
+        [SerializeField] private int startingTileCollectionCount = 2;
         [SerializeField] private float distanceBetweenChunks = 3.0f; // Length of each path tile
         [Min(1)]
-        [SerializeField] private int startingTilesCount = 7; // Number of tiles with obstacles at start
-        [Min(1)]
-        [SerializeField] private int tilesCountAfterResettingOrigin = 5;
+        [SerializeField] private int resetOriginTileCollectionCount = 5;
         [Min(0.1f)]
         [SerializeField] private float pathDistance = 50.0f;
 
         private Vector3 currentSpawnPosition = Vector3.zero;
         private List<Chunk> activeTiles = new List<Chunk>();
-        private ObjectPool<Chunk> chunkPool;
-        private int chunkNo = 1;
+        private Dictionary<ChunkType, ObjectPool<Chunk>> poolDict;
+        private Stopwatch timer;
+
+        private void Awake()
+        {
+            poolDict = new Dictionary<ChunkType, ObjectPool<Chunk>>();
+            timer = new Stopwatch();
+        }
         void Start()
         {
-            if (chunkPool == null)
+            if (poolDict.Count == 0)
             {
-                chunkPool = new ObjectPool<Chunk>(CreateChunk,
-                                                  OnGetChunk,
-                                                  OnReturnChunk,
-                                                  OnDestroyChunk,
-                                                  initialChunkCount,
-                                                  true);
+                foreach(var data in chunkData)
+                {
+                    var pool = new ObjectPool<Chunk>(() => CreateChunk(data.prefabs),
+                                                     OnGetChunk,
+                                                     OnReturnChunk,
+                                                     OnDestroyChunk,
+                                                     data.chunkCount,
+                                                     true);
+
+                    poolDict.Add(data.chunkType, pool);
+                                    
+                }
             }
 
             ServiceLocator.ForSceneOf(this).Register<PathSpawner>(this);
-            Random.InitState((int)System.DateTime.Now.Ticks);
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
 
             currentSpawnPosition = transform.position;
-            
-            //Adjust spawnZ for initial tiles
-            AdjustSpawnZ();
 
-
-            //Then spawn tiles
-            for (int i = 0; i < startingTilesCount; i++)
+            //Spawn initial tiles
+            for(int i = 0; i < startingTileCollectionCount; i++)
             {
-                SpawnTile();
+                SpawnTiles(difficulties[0]);
             }
         }
 
@@ -71,22 +81,17 @@ namespace Game.Gameplay
                 DeleteTiles();
                 ResetOriginOfTiles(playerZ);
                 runner.MoveBack(playerZ);
-                for (int i = 0; i < tilesCountAfterResettingOrigin; i++)
-                {
-                    SpawnTile();
-                }
+                SpawnTiles((int)timer.Elapsed.TotalMinutes, timer.Elapsed.Seconds);
             }
 
         }
 
-        private Chunk CreateChunk()
+        private Chunk CreateChunk(Chunk[] prefabs)
         {
-            int randomIndex = Random.Range(0, pathPrefabs.Length);
-            var instance = Instantiate(pathPrefabs[randomIndex], Vector3.zero, Quaternion.identity);
+            int randomIndex = UnityEngine.Random.Range(0, prefabs.Length);
+            var instance = Instantiate(prefabs[randomIndex], Vector3.zero, Quaternion.identity);
             instance.transform.parent = transform;
             instance.gameObject.SetActive(false);
-            instance.transform.name = "Chunk " + chunkNo.ToString();
-            chunkNo++;
             return instance;
         }
 
@@ -114,36 +119,29 @@ namespace Game.Gameplay
 
             currentSpawnPosition.z -= distance;
         }
-
-        private void AdjustSpawnZ()
+        
+        private void SpawnTiles(int minutes, int seconds)
         {
-            for (int i = 0; i < startingChunks.Length; i++)
-            {
-                Chunk current = startingChunks[i];
-                Chunk next = (i + 1 < startingChunks.Length) ? startingChunks[i + 1] : null;
-                currentSpawnPosition.z += current.Length;
-                if (next != null)
-                {
-                    float gap = (next.transform.position.z - (current.transform.position.z + current.Length));
-                    currentSpawnPosition.z += gap;
-                }
-
-                activeTiles.Add(current);
-            }
-
-            currentSpawnPosition.z += distanceBetweenChunks;
+            DifficultyData data = difficulties.FirstOrDefault((element) => 
+                                          element.startingMinute >= minutes && 
+                                          element.startingSecond >= seconds);
+            Debug.Log("Running SpawnTiles method with time parameters");
+            SpawnTiles(data);
         }
 
-        void SpawnTile()
+        private void SpawnTiles(DifficultyData data)
         {
-            // Randomly pick a prefab from the list
-            Chunk prefab = pathPrefabs[Random.Range(0, pathPrefabs.Length)];
-            Chunk newTile = chunkPool.Get();//Instantiate(prefab, Vector3.forward * spawnZ, Quaternion.identity);
-            newTile.gameObject.transform.position = currentSpawnPosition;
-            newTile.gameObject.transform.rotation = Quaternion.identity;
+            Debug.Log("Running SpawnData with difficultyData parameters");
+            foreach(var element in data.progressionOrder)
+            {
+                Chunk newTile = poolDict[element].Get();
+                newTile.gameObject.transform.position = currentSpawnPosition;
+                newTile.gameObject.transform.rotation = Quaternion.identity;
 
-            activeTiles.Add(newTile);
-            currentSpawnPosition.z += newTile.Length + distanceBetweenChunks;
+                activeTiles.Add(newTile);
+                currentSpawnPosition.z += newTile.Length + distanceBetweenChunks;
+            }
+            
         }
 
         void DeleteTiles()
@@ -167,7 +165,7 @@ namespace Game.Gameplay
 
             for (int i = 0; i < lastTileIndexBehindThePlayer; i++)
             {
-                chunkPool.ReturnToPool(activeTiles[0]);
+                poolDict[activeTiles[0].Type].ReturnToPool(activeTiles[0]);
                 activeTiles.RemoveAt(0);
             }
         }

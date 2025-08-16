@@ -941,6 +941,13 @@ MonoBehaviour:
   pathPrefabs:
   - {fileID: -4132141501881395102, guid: 12ed530b54461694cafdbf208f955bf5, type: 3}
   - {fileID: -8768382351772741182, guid: b7378c04adeae804aa3425e98af42206, type: 3}
+  - {fileID: -8768382351772741182, guid: 0245fc94d8d3b4c419ca313aa7f128c9, type: 3}
+  - {fileID: -8768382351772741182, guid: 0b62a77eb09a7244381675d0d781db9e, type: 3}
+  - {fileID: -8768382351772741182, guid: 79312453607025c4fb8d3ad58e975bc0, type: 3}
+  - {fileID: -8768382351772741182, guid: e449f3015756b7144921f40fc4ac67cf, type: 3}
+  - {fileID: -8768382351772741182, guid: d172ae279cf2be64f867c81901748b1c, type: 3}
+  - {fileID: -8768382351772741182, guid: 6c1f7f8e28ff7e34f96b5401be87ef86, type: 3}
+  - {fileID: -8768382351772741182, guid: 4a993e27cf3086f48836685d4121bff4, type: 3}
   initialChunkCount: 100
   distanceBetweenChunks: 0
   startingTilesCount: 15
