@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3325236822001912247}
   - component: {fileID: -8768382351772741182}
   m_Layer: 7
-  m_Name: Basic Chunk 10
+  m_Name: Reward Only Level
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
