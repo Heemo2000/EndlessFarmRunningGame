@@ -110,12 +110,12 @@ namespace Game.Gameplay
             }
             else
             {
+                
                 bool isFalling = velocityY < 0.0f;
+                float currentGravity = (isFalling) ? gravity * fallMultiplier: gravity;
 
-                currentVelocityY = (isFalling) ? velocityY * fallMultiplier :
-                                                 velocityY;
-
-                newVelocityY = currentVelocityY - gravity * Time.deltaTime;
+                currentVelocityY = velocityY;
+                newVelocityY = currentVelocityY - currentGravity * Time.fixedDeltaTime;
                 averageVelocityY = (currentVelocityY + newVelocityY) / 2.0f;
                 velocityY = averageVelocityY;
             }
@@ -175,14 +175,11 @@ namespace Game.Gameplay
             runnerRB.isKinematic = true;
         }
 
-        private void Update()
-        {
-            HandleGravity();
-        }
-
         void FixedUpdate()
         {
+            HandleGravity();
             HandleMovement();
+            
         }
 
         private void OnDrawGizmosSelected()

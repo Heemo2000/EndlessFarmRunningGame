@@ -108,7 +108,7 @@ namespace Game.Gameplay
                 {
                     chunk.OnPlayerExitRange();
                 }
-                else
+                else if (distanceZ >= 0.0f)
                 {
                     chunk.OnPlayerEnterRange();
                 }
@@ -192,7 +192,7 @@ namespace Game.Gameplay
                 }
             }
 
-            for (int i = 0; i < lastTileIndexBehindThePlayer; i++)
+            for (int i = 0; i < lastTileIndexBehindThePlayer - 2; i++)
             {
                 poolDict[activeChunks[0].Type].ReturnToPool(activeChunks[0]);
                 activeChunks.RemoveAt(0);

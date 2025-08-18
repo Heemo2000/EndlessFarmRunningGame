@@ -8,6 +8,7 @@ namespace Game.Gameplay
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Runner runner;
+        [SerializeField] private FruitType levelType = FruitType.None;
         
         public UnityEvent OnBeforeGameStarts;
         public UnityEvent<int> OnStartingTimeDepleting;
@@ -15,6 +16,17 @@ namespace Game.Gameplay
         public UnityEvent OnGameOver;
 
         private Coroutine startGameCoroutine;
+
+        public FruitType LevelType { get => levelType;}
+
+        public void StartGame()
+        {
+            if (startGameCoroutine == null)
+            {
+                startGameCoroutine = StartCoroutine(StartGameSlowly());
+            }
+        }
+
         private IEnumerator StartGameSlowly()
         {
             int secondsLeft = 3;
@@ -30,25 +42,30 @@ namespace Game.Gameplay
             OnGameStart?.Invoke();
             startGameCoroutine = null;
         }
-
-        private void StartGame() 
-        {
-            
-            if (startGameCoroutine == null) 
-            {
-                startGameCoroutine = StartCoroutine(StartGameSlowly());
-            }
-        }
-
+        
         private void DisablePlayer()
         {
             runner.gameObject.SetActive(false);
+        }
+
+        private void TryToDoRespawn()
+        {
+            if(ServiceLocator.ForSceneOf(this).
+               TryGetService<GameDataManager>(out GameDataManager gameDataManager)
+               &&
+               ServiceLocator.ForSceneOf(this).
+               TryGetService<RespawnManager>(out RespawnManager respawnManager))
+            {
+                int coins = gameDataManager.GetCoinsCount();
+                respawnManager.OnTryToDoRespawnBasedOnCoins?.Invoke(coins);
+            }
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             OnGameOver.AddListener(DisablePlayer);
+            OnGameOver.AddListener(TryToDoRespawn);
             OnBeforeGameStarts.AddListener(DisablePlayerMovmement);
             OnGameStart.AddListener(EnablePlayerMovement);
             ServiceLocator.ForSceneOf(this).Register<GameManager>(this);
@@ -65,11 +82,13 @@ namespace Game.Gameplay
 
         private void EnablePlayerMovement()
         {
+            runner.gameObject.SetActive(true);
             runner.ShouldMove = true;
         }
 
         private void DisablePlayerMovmement()
         {
+            runner.gameObject.SetActive(true);
             runner.ShouldMove = false;
         }
     }
