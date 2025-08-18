@@ -480,9 +480,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 235777812997706064, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188997808781180684, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5178985235301912179, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_Name
       value: Box Type 2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5871688426064958810, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -626,6 +642,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 3688925747707333195, guid: 619e7e1301e207b4195661ea72db9ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5010076677069365646, guid: 619e7e1301e207b4195661ea72db9ac7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.356769
@@ -669,6 +689,14 @@ PrefabInstance:
     - target: {fileID: 5678070038934862644, guid: 619e7e1301e207b4195661ea72db9ac7, type: 3}
       propertyPath: m_Name
       value: Boxes Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678070038934862644, guid: 619e7e1301e207b4195661ea72db9ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623099599322551656, guid: 619e7e1301e207b4195661ea72db9ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -918,9 +946,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 235777812997706064, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188997808781180684, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5178985235301912179, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_Name
       value: Box Type 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5871688426064958810, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_LocalPosition.x

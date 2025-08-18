@@ -50,11 +50,22 @@ namespace Game.Gameplay
 
         private void TryToDoRespawn()
         {
-            if(ServiceLocator.ForSceneOf(this).
-               TryGetService<GameDataManager>(out GameDataManager gameDataManager)
-               &&
-               ServiceLocator.ForSceneOf(this).
-               TryGetService<RespawnManager>(out RespawnManager respawnManager))
+            ServiceLocator.ForSceneOf(this).
+               TryGetService<GameDataManager>(out GameDataManager gameDataManager);
+
+            ServiceLocator.ForSceneOf(this).
+               TryGetService<RespawnManager>(out RespawnManager respawnManager);
+
+            if(gameDataManager == null)
+            {
+                Debug.Log("Game Data Manager is null");
+            }
+
+            if(respawnManager == null)
+            {
+                Debug.Log("Respawn Manager is null");
+            }
+            if (gameDataManager != null && respawnManager != null)
             {
                 int coins = gameDataManager.GetCoinsCount();
                 respawnManager.OnTryToDoRespawnBasedOnCoins?.Invoke(coins);

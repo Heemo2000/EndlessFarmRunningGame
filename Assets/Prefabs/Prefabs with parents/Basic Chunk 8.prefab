@@ -344,9 +344,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 235777812997706064, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188997808781180684, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5178985235301912179, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_Name
       value: Box Type 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5871688426064958810, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -603,9 +619,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4111051234232242550, guid: 04ab3b77d43b1fd47929995f57fe2453, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6146891728698973215, guid: 04ab3b77d43b1fd47929995f57fe2453, type: 3}
       propertyPath: m_Name
       value: Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146891728698973215, guid: 04ab3b77d43b1fd47929995f57fe2453, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1187,9 +1211,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4111051234232242550, guid: 04ab3b77d43b1fd47929995f57fe2453, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6146891728698973215, guid: 04ab3b77d43b1fd47929995f57fe2453, type: 3}
       propertyPath: m_Name
       value: Barrel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146891728698973215, guid: 04ab3b77d43b1fd47929995f57fe2453, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

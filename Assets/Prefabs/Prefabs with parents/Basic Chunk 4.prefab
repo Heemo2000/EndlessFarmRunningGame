@@ -194,6 +194,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 1630156200730525979, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286302578405934321, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340797282290655815, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5792881599331271095, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.14
@@ -237,6 +249,10 @@ PrefabInstance:
     - target: {fileID: 6012496229882145067, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
       propertyPath: m_Name
       value: Shovel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012496229882145067, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -413,9 +429,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 1556852246485447988, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289191831811165701, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254563424224876107, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365083940921005801, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5458942374173689661, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
       propertyPath: m_Name
       value: Plant Pot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458942374173689661, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592824603642908528, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877494463245192332, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8873005860115913630, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -486,9 +530,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 1556852246485447988, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289191831811165701, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254563424224876107, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365083940921005801, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5458942374173689661, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
       propertyPath: m_Name
       value: Plant Pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458942374173689661, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592824603642908528, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877494463245192332, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8873005860115913630, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -705,9 +777,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 235777812997706064, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188997808781180684, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5178985235301912179, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_Name
       value: Box Type 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610638835848386571, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5871688426064958810, guid: 6b9ec6efa8b0b8d4f9efe231a24b38f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -778,9 +866,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 1556852246485447988, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289191831811165701, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254563424224876107, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365083940921005801, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5458942374173689661, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
       propertyPath: m_Name
       value: Plant Pot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458942374173689661, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592824603642908528, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877494463245192332, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8873005860115913630, guid: 90a32c3201524b94683fcc698b3c071d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -997,6 +1113,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473132646473693247}
     m_Modifications:
+    - target: {fileID: 1630156200730525979, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286302578405934321, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340797282290655815, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5792881599331271095, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3079264
@@ -1040,6 +1168,10 @@ PrefabInstance:
     - target: {fileID: 6012496229882145067, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
       propertyPath: m_Name
       value: Shovel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012496229882145067, guid: fdcb72251e1d99949a67b7c5ca953be1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

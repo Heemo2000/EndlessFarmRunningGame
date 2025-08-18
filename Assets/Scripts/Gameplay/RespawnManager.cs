@@ -6,11 +6,18 @@ namespace Game.Gameplay
 {
     public class RespawnManager : MonoBehaviour
     {
+        [SerializeField] private Runner runner;
+        [Min(0.01f)]
+        [SerializeField] private float checkRadius = 2.0f;
+        [SerializeField] private float aheadDistance = 0.2f;
+        [SerializeField] private LayerMask obstacleMask;
+
         public UnityEvent<int> OnTryToDoRespawnBasedOnCoins;
         public UnityEvent<int> OnRespawnCostCalculated; // For UI feedback
         public UnityEvent OnRespawnSucceeded;
         public UnityEvent OnRespawnFailed;
 
+        
         // Call this on crash:
         public void AttemptRespawn()
         {
@@ -61,6 +68,28 @@ namespace Game.Gameplay
             return respawnCost;
         }
 
+        private void SendPlayerAtAppropriatePosition()
+        {
+            float distanceZ = 0.0f;
+            Vector3 checkPosition = runner.transform.position;
+
+            while(Physics.CheckSphere(checkPosition, checkRadius, obstacleMask.value))
+            {
+                Debug.Log("Increment spawn position");
+                distanceZ += aheadDistance;
+                checkPosition.z += aheadDistance;
+            }
+
+            runner.gameObject.SetActive(true);
+            runner.MoveForward(distanceZ);
+            runner.MoveForward(distanceZ);
+
+            if (ServiceLocator.ForSceneOf(this).TryGetService<GameManager>(out GameManager gameManager))
+            {
+                gameManager.StartGame();
+            }
+        }
+
         private bool TrySpendCoins(int cost)
         {
             if(ServiceLocator.ForSceneOf(this).TryGetService<GameDataManager>(out GameDataManager gameDataManager))
@@ -90,6 +119,10 @@ namespace Game.Gameplay
             OnRespawnSucceeded?.Invoke();
         }
 
-        // Your GDD states that player starts with 0 coins; handle elsewhere as needed.
+        private void Start()
+        {
+            ServiceLocator.ForSceneOf(this).Register<RespawnManager>(this);
+            OnRespawnSucceeded.AddListener(SendPlayerAtAppropriatePosition);
+        }
     }
 }

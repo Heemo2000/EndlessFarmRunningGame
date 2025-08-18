@@ -13,8 +13,9 @@ namespace Game.Gameplay
 
         public void ShowRespawnUI(int coins)
         {
+            Debug.Log("Showing respawn UI");
             coinsUIText.text = coins.ToString();
-            yesButton.gameObject.SetActive(coins > 10);
+            yesButton.interactable = coins > 10;
         }
     }
 }

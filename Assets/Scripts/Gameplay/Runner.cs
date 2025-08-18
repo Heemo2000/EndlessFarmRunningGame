@@ -50,6 +50,10 @@ namespace Game.Gameplay
 
         public UnityEvent<float> OnJumpBuildup;
 
+        public void MoveForward(float distance)
+        {
+            currentPosition.z += distance;
+        }
         public void MoveBack(float distance)
         {
             currentPosition.z -= distance;
